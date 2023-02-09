@@ -1,0 +1,9 @@
+.header {
+ background-color: lemonchiffon;
+    grid-area: h;
+}
+
+.header img {
+    height: 50px;
+    border-radius: 50px;
+}
