@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import state from "./state/state";
+import state, {addPost, updatePostText} from "./state/state";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+export const rerenderEntireTree = (state)=> {
+    root.render(<React.StrictMode>
+        <BrowserRouter>
+            <App state={state}
+                 addPost={addPost}
+                 updatePostText={updatePostText}/>
+        </BrowserRouter>
+    </React.StrictMode>);
+}
 
-root.render(<React.StrictMode>
-    <BrowserRouter>
-        <App state={state}/>
-    </BrowserRouter>
-</React.StrictMode>);
+
+rerenderEntireTree(state);

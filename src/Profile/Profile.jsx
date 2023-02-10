@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import MyPosts from "./MyPost/MyPosts";
 
 const Profile = (props) => {
-    const postElements = props.state.profile.map(p => <Post message={p.message} likesCount = {p.likesCount}/>)
+    const postElements = props.state.profile.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
     return (
         <div className={s.postInfo}>
             <div className={s.profile}>
@@ -12,10 +12,12 @@ const Profile = (props) => {
                     src="https://w-dog.ru/wallpapers/9/17/322057789001671/zakat-nebo-solnce-luchi-oblaka-tuchi-pole-kolosya-zelenye-trava.jpg"/>
             </div>
             <div>
-                <MyPosts newPostText={props.state.newPostText}/>
+                <MyPosts newPostText={props.state.newPostText}
+                         addPost={props.addPost}
+                         updatePostText={props.updatePostText}/>
             </div>
             <div className={s.textPost}>
-             {postElements}
+                {postElements}
             </div>
         </div>
     )
