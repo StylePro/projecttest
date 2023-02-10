@@ -5,7 +5,6 @@ import Profile from "./Profile/Profile";
 import Dialogs from "./Dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
 import React from "react";
-import {updatePostText} from "./state/state";
 
 const App = (props) => {
 
@@ -15,7 +14,9 @@ const App = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/dialogs' element={<Dialogs state={props.state.dialogPage}/>}/>
+                    <Route path='/dialogs' element={<Dialogs state={props.state.dialogPage}
+                                                             sendMessage={props.sendMessage}
+                                                             updateMessageBody={props.updateMessageBody}/>}/>
                     <Route path='/profile' element={<Profile state={props.state.profilePage}
                                                              addPost={props.addPost}
                                                              updatePostText={props.updatePostText}/>}/>

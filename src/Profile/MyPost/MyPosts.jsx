@@ -16,7 +16,7 @@ const MyPosts =(props)=> {
                 ava+content
             </div>
             <div>
-                <textarea onChange={updateNewPostText} placeholder='Inter your post' value={props.newPostText}></textarea>
+                <textarea onChange={updateNewPostText} placeholder='Enter your post' value={props.newPostText}></textarea>
             </div>
             <div>
                 <button onClick={addPost}>Add Post</button>

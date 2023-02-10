@@ -38,9 +38,21 @@ export const addPost = () => {
     state.profilePage.newPostText = '';
     rerenderEntireTree(state);
 }
-
 export const updatePostText = (text) => {
     state.profilePage.newPostText = text;
+    rerenderEntireTree(state);
+}
+export const sendMessage = () => {
+    let newMessage = {
+        id: Date.now(),
+        message: state.dialogPage.newMessageBody
+    }
+    state.dialogPage.message.push(newMessage);
+    state.dialogPage.newMessageBody = '';
+    rerenderEntireTree(state);
+}
+export const updateMessageBody = (messageText) => {
+    state.dialogPage.newMessageBody = messageText;
     rerenderEntireTree(state);
 }
 export default state;

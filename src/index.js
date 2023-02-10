@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import state, {addPost, updatePostText} from "./state/state";
+import state, {addPost, sendMessage, updateMessageBody, updatePostText} from "./state/state";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,7 +12,9 @@ export const rerenderEntireTree = (state)=> {
         <BrowserRouter>
             <App state={state}
                  addPost={addPost}
-                 updatePostText={updatePostText}/>
+                 updatePostText={updatePostText}
+                 sendMessage={sendMessage}
+                 updateMessageBody={updateMessageBody}/>
         </BrowserRouter>
     </React.StrictMode>);
 }
