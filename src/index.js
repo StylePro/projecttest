@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import state, {addPost, sendMessage, updateMessageBody, updatePostText} from "./state/state";
+import state, {addPost, sendMessage, subscriber, updateMessageBody, updatePostText} from "./state/state";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export const rerenderEntireTree = (state)=> {
+const rerenderEntireTree = (state)=> {
     root.render(<React.StrictMode>
         <BrowserRouter>
             <App state={state}
@@ -19,5 +19,5 @@ export const rerenderEntireTree = (state)=> {
     </React.StrictMode>);
 }
 
-
 rerenderEntireTree(state);
+subscriber(rerenderEntireTree);
