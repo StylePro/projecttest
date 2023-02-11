@@ -4,11 +4,11 @@ import s from './MyPosts.module.css'
 
 const MyPosts =(props)=> {
     const addPost = ()=> {
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'});
     }
     const updateNewPostText =(e)=> {
         let text = e.target.value;
-        props.updatePostText(text)
+        props.dispatch({type: 'UPDATE-POST-TEXT', text: text})
     }
     return (
         <div className={s.myPosts}>

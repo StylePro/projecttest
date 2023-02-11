@@ -9,12 +9,12 @@ const Dialogs = (props) => {
     const messagesElements = props.state.message.map(m => <Message message={m.message}/>)
 
     const sendMessage = () => {
-        props.sendMessage();
+        props.dispatch({type: 'SEND-MESSAGE'});
     }
 
     const updateMessageText = (e) => {
         let text = e.target.value;
-        props.updateMessageBody(text);
+        props.dispatch({type: 'UPDATE-MESSAGE-BODY', messageText: text});
     }
 
     return (
