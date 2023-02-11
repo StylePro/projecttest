@@ -44,43 +44,73 @@ const store = {
     },
 
     dispatch(action) {
+        switch (action.type) {
+            case ADD_POST:
+                const newPost = {
+                    id: Date.now(),
+                    message: this._state.profilePage.newPostText,
+                    likesCount: 0,
+                }
+                this._state.profilePage.profile.push(newPost);
+                this._state.profilePage.newPostText = '';
+                this._rerenderEntireTree(this._state);
+                break;
+            case UPDATE_POST_TEXT:
+                this._state.profilePage.newPostText = action.text;
+                this._rerenderEntireTree(this._state);
+                break;
+            case SEND_MESSAGE:
+                let newMessage = {
+                    id: Date.now(),
+                    message: this._state.dialogPage.newMessageBody
+                }
+                this._state.dialogPage.message.push(newMessage);
+                this._state.dialogPage.newMessageBody = '';
+                this._rerenderEntireTree(this._state);
+                break;
+            case UPDATE_MESSAGE_BODY:
+                this._state.dialogPage.newMessageBody = action.messageText;
+                this._rerenderEntireTree(this._state);
+                break;
+        }
+    },
+}
+/*if (action.type === ADD_POST) {
+    const newPost = {
+        id: Date.now(),
+        message: this._state.profilePage.newPostText,
+        likesCount: 0,
+    }
+    this._state.profilePage.profile.push(newPost);
+    this._state.profilePage.newPostText = '';
+    this._rerenderEntireTree(this._state);
+} else {
 
-        if (action.type === ADD_POST) {
-            const newPost = {
+    if (action.type === UPDATE_POST_TEXT) {
+        this._state.profilePage.newPostText = action.text;
+        this._rerenderEntireTree(this._state);
+    } else {
+
+        if (action.type === SEND_MESSAGE) {
+            let newMessage = {
                 id: Date.now(),
-                message: this._state.profilePage.newPostText,
-                likesCount: 0,
+                message: this._state.dialogPage.newMessageBody
             }
-            this._state.profilePage.profile.push(newPost);
-            this._state.profilePage.newPostText = '';
+            this._state.dialogPage.message.push(newMessage);
+            this._state.dialogPage.newMessageBody = '';
             this._rerenderEntireTree(this._state);
         } else {
 
-            if (action.type === UPDATE_POST_TEXT) {
-                this._state.profilePage.newPostText = action.text;
+            if (action.type === UPDATE_MESSAGE_BODY) {
+                this._state.dialogPage.newMessageBody = action.messageText;
                 this._rerenderEntireTree(this._state);
-            } else {
-
-                if (action.type === SEND_MESSAGE) {
-                    let newMessage = {
-                        id: Date.now(),
-                        message: this._state.dialogPage.newMessageBody
-                    }
-                    this._state.dialogPage.message.push(newMessage);
-                    this._state.dialogPage.newMessageBody = '';
-                    this._rerenderEntireTree(this._state);
-                } else {
-
-                    if (action.type === UPDATE_MESSAGE_BODY) {
-                        this._state.dialogPage.newMessageBody = action.messageText;
-                        this._rerenderEntireTree(this._state);
-                    }
-                }
             }
         }
-
     }
 }
+
+}*/
+
 export const addPostActionCreator = () => {
     return (
         {type: 'ADD-POST'}
