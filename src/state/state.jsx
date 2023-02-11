@@ -1,3 +1,9 @@
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const ADD_POST = 'ADD-POST';
+
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_MESSAGE_BODY = 'UPDATE-MESSAGE-BODY';
+
 const store = {
 
     _rerenderEntireTree() {
@@ -33,35 +39,47 @@ const store = {
     getState() {
         return this._state
     },
-    addPost() {
-        const newPost = {
-            id: Date.now(),
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-        }
-        this._state.profilePage.profile.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._rerenderEntireTree(this._state);
-    },
-    updatePostText(text) {
-        this._state.profilePage.newPostText = text;
-        this._rerenderEntireTree(this._state);
-    },
-    sendMessage () {
-        let newMessage = {
-            id: Date.now(),
-            message: this._state.dialogPage.newMessageBody
-        }
-        this._state.dialogPage.message.push(newMessage);
-        this._state.dialogPage.newMessageBody = '';
-        this._rerenderEntireTree(this._state);
-    },
-    updateMessageBody(messageText) {
-        this._state.dialogPage.newMessageBody = messageText;
-        this._rerenderEntireTree(this._state);
-    },
     subscriber(observer) {
         this._rerenderEntireTree = observer;
-}
+    },
+
+    dispatch(action) {
+
+        if (action.type === ADD_POST) {
+            const newPost = {
+                id: Date.now(),
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+            }
+            this._state.profilePage.profile.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._rerenderEntireTree(this._state);
+        } else {
+
+            if (action.type === UPDATE_POST_TEXT) {
+                this._state.profilePage.newPostText = action.text;
+                this._rerenderEntireTree(this._state);
+            } else {
+
+                if (action.type === SEND_MESSAGE) {
+                    let newMessage = {
+                        id: Date.now(),
+                        message: this._state.dialogPage.newMessageBody
+                    }
+                    this._state.dialogPage.message.push(newMessage);
+                    this._state.dialogPage.newMessageBody = '';
+                    this._rerenderEntireTree(this._state);
+                } else {
+
+                    if (action.type === UPDATE_MESSAGE_BODY) {
+                        this._state.dialogPage.newMessageBody = action.messageText;
+                        this._rerenderEntireTree(this._state);
+                    }
+                }
+            }
+        }
+
+    }
 }
 export default store;
+
