@@ -2,6 +2,8 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {sendMessageActionCreator, updateMessageTextActionCreator} from "../state/state";
+
 
 const Dialogs = (props) => {
 
@@ -9,12 +11,12 @@ const Dialogs = (props) => {
     const messagesElements = props.state.message.map(m => <Message message={m.message}/>)
 
     const sendMessage = () => {
-        props.dispatch({type: 'SEND-MESSAGE'});
+        props.dispatch(sendMessageActionCreator());
     }
 
     const updateMessageText = (e) => {
         let text = e.target.value;
-        props.dispatch({type: 'UPDATE-MESSAGE-BODY', messageText: text});
+        props.dispatch(updateMessageTextActionCreator(text));
     }
 
     return (
