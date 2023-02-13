@@ -75,25 +75,10 @@ const store = {
         }
     },
 }
-export const addPostActionCreator = () => {
-    return (
-        {type: 'ADD-POST'}
-    )
-}
-export const updateNewPostTextActionCreator = (text) => {
-    return (
-        {type: 'UPDATE-POST-TEXT', text: text}
-    )
-}
-export const sendMessageActionCreator = () => {
-    return (
-        {type: 'SEND-MESSAGE'}
-    )
-}
-export const updateMessageTextActionCreator = (text) => {
-    return (
-        {type: 'UPDATE-MESSAGE-BODY', messageText: text}
-    )
-}
+export const addPostActionCreator = () => ({type: 'ADD-POST'});
+export const updateNewPostTextActionCreator = (text) =>
+    ({type: 'UPDATE-POST-TEXT', text: text});
+export const sendMessageActionCreator = () => ({type: 'SEND-MESSAGE'});
+export const updateMessageTextActionCreator = (text) => ({type: 'UPDATE-MESSAGE-BODY', messageText: text});
 export default store;
 
