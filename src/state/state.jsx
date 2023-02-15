@@ -1,11 +1,7 @@
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
-const ADD_POST = 'ADD-POST';
-
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_MESSAGE_BODY = 'UPDATE-MESSAGE-BODY';
+import profileReducer from "./profile-reducer";
+import dialogReducer from "./dialog-reducer";
 
 const store = {
-
     _rerenderEntireTree() {
         console.log('state new')
     },
@@ -44,35 +40,10 @@ const store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                const newPost = {
-                    id: Date.now(),
-                    message: this._state.profilePage.newPostText,
-                    likesCount: 0,
-                }
-                this._state.profilePage.profile.push(newPost);
-                this._state.profilePage.newPostText = '';
-                this._rerenderEntireTree(this._state);
-                break;
-            case UPDATE_POST_TEXT:
-                this._state.profilePage.newPostText = action.text;
-                this._rerenderEntireTree(this._state);
-                break;
-            case SEND_MESSAGE:
-                let newMessage = {
-                    id: Date.now(),
-                    message: this._state.dialogPage.newMessageBody
-                }
-                this._state.dialogPage.message.push(newMessage);
-                this._state.dialogPage.newMessageBody = '';
-                this._rerenderEntireTree(this._state);
-                break;
-            case UPDATE_MESSAGE_BODY:
-                this._state.dialogPage.newMessageBody = action.messageText;
-                this._rerenderEntireTree(this._state);
-                break;
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
+
+        this._rerenderEntireTree(this._state);
     },
 }
 export const addPostActionCreator = () => ({type: 'ADD-POST'});
