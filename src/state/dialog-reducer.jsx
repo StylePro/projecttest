@@ -14,6 +14,8 @@ const dialogReducer = (state, action) => {
         case UPDATE_MESSAGE_BODY:
             state.newMessageBody = action.messageText;
             break;
+        default:
+            return state;
     }
     return state;
 }
