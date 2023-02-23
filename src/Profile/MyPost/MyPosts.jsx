@@ -3,6 +3,7 @@ import s from './MyPosts.module.css'
 
 
 const MyPosts = (props) => {
+    console.log(props)
     const onAddPost = () => {
         props.addPost();
     }

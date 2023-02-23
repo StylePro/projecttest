@@ -7,7 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import React from "react";
 
 const App = (props) => {
-console.log(props)
+    console.log(props)
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -15,9 +15,10 @@ console.log(props)
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='/dialogs' element={<Dialogs state={props.state.dialogPage}
-                                                             dispatch = {props.dispatch}/>}/>
+                                                             dispatch={props.dispatch}/>}/>
                     <Route path='/profile' element={<Profile state={props.state.profilePage}
-                                                             dispatch = {props.dispatch}/>}/>
+                                                             dispatch={props.dispatch}
+                                                             store={props.store}/>}/>
                 </Routes>
             </div>
         </div>
