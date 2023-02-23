@@ -7,7 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import React from "react";
 
 const App = (props) => {
-
+console.log(props)
     return (
         <div className='app-wrapper'>
             <Header/>

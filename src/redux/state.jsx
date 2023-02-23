@@ -3,7 +3,7 @@ import dialogReducer from "./dialog-reducer";
 
 const store = {
     _rerenderEntireTree() {
-        console.log('state new')
+        console.log('redux new')
     },
     _state: {
         profilePage: {
