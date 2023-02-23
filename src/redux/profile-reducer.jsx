@@ -9,7 +9,7 @@ let initialStore = {
         {id: 4, message: 'All good', likesCount: 45},
         {id: 5, message: 'Ogogo', likesCount: 43},
     ],
-    newPostText: '',
+    newPostText: '123',
 }
 const profileReducer = (state = initialStore, action) => {
 
