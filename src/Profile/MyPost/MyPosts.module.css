@@ -1,3 +1,10 @@
 .myPosts {
     padding: 10px ;
 }
+
+
+.myPosts img {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+}

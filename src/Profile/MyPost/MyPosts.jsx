@@ -1,9 +1,10 @@
 import React from "react";
 import s from './MyPosts.module.css'
+import Post from "../Post/Post";
 
 
 const MyPosts = (props) => {
-    console.log(props)
+    const postElements = props.state.profile.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
     const onAddPost = () => {
         props.addPost();
     }
@@ -18,10 +19,13 @@ const MyPosts = (props) => {
             </div>
             <div>
                 <textarea onChange={updateNewPostText} placeholder='Enter your post'
-                          value={props.newPostText}></textarea>
+                          value={props.state.newPostText}></textarea>
             </div>
             <div>
                 <button onClick={onAddPost}>Add Post</button>
+            </div>
+            <div>
+                {postElements}
             </div>
         </div>
     )

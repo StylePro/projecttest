@@ -14,7 +14,7 @@ let initialStore = {
         {id: 3, message: 'Who'},
         {id: 4, message: 'Ho Ho Ho'},
     ],
-    newMessageBody: '',
+    newMessageBody: '12345',
 }
 const dialogReducer = (state = initialStore, action) => {
     switch (action.type) {
