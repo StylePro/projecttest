@@ -8,7 +8,7 @@ let initialStore = {
         {id: 3, name: 'Egor', surname: 'Dydkin'},
         {id: 4, name: 'Alex', surname: 'Drag'},
     ],
-    message: [
+    messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hello'},
         {id: 3, message: 'Who'},
@@ -19,20 +19,19 @@ let initialStore = {
 const dialogReducer = (state = initialStore, action) => {
     switch (action.type) {
         case SEND_MESSAGE:
-            let newMessage = {
-                id: Date.now(),
-                message: state.newMessageBody
+            return {
+                ...state,
+                messages: [...state.messages, {id: Date.now(), message: state.newMessageBody}],
+                newMessageBody: ''
             }
-            state.message.push(newMessage);
-            state.newMessageBody = '';
-            break;
         case UPDATE_MESSAGE_BODY:
-            state.newMessageBody = action.messageText;
-            break;
+            return {
+                ...state,
+                newMessageBody: action.messageText
+            }
         default:
             return state;
     }
-    return state;
 }
 
 export default dialogReducer;
