@@ -46,9 +46,7 @@ const store = {
         this._rerenderEntireTree(this._state);
     },
 }
-export const addPostActionCreator = () => ({type: 'ADD-POST'});
-export const updateNewPostTextActionCreator = (text) =>
-    ({type: 'UPDATE-POST-TEXT', text: text});
+
 export const sendMessageActionCreator = () => ({type: 'SEND-MESSAGE'});
 export const updateMessageTextActionCreator = (text) => ({type: 'UPDATE-MESSAGE-BODY', messageText: text});
 export default store;
