@@ -7,3 +7,9 @@
     height: 100px;
     border-radius: 20px;
 }
+
+.preloader {
+    width: 100px;
+    height: 100px;
+    border-radius: 40px;
+}
