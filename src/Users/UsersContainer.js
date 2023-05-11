@@ -17,7 +17,7 @@ import {usersApi} from "../components/api/api";
 class UsersApiComponent extends React.Component {
     componentDidMount() {
         this.props.setIsFetching(true)
-        usersApi.getUsers().then(data => {
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.setUsers(data.items)
             this.props.setTotalUsersCount(data.totalCount)
             this.props.setIsFetching(false)
@@ -28,7 +28,7 @@ class UsersApiComponent extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.setIsFetching(true)
-        usersApi.getUsers2().then(data => {
+        usersApi.getUsers2(pageNumber).then(data => {
             this.props.setUsers(data.items)
             this.props.setIsFetching(false)
         })
