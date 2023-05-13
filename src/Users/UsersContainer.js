@@ -1,10 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow, getUsers,
+    followSuccess, getUsers,
     setCurrentPage,
     toggleFollowingProgress,
-    unfollow
+    unfollowSuccess
 } from "../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../components/common/preloader/Preloader";
@@ -28,8 +28,8 @@ class UsersApiComponent extends React.Component {
                    onPageChanged={this.onPageChanged}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
-                   unfollow={this.props.unfollow}
-                   follow={this.props.follow}
+                   unfollowSuccess={this.props.unfollowSuccess}
+                   followSuccess={this.props.followSuccess}
                    followingInProgress={this.props.followingInProgress}
                    toggleFollowingProgress={this.props.toggleFollowingProgress}
             />
@@ -50,8 +50,8 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    follow,
-    unfollow,
+    followSuccess,
+    unfollowSuccess,
     setCurrentPage,
     toggleFollowingProgress,
     getUsers

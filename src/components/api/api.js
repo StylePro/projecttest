@@ -12,12 +12,6 @@ export const usersApi = {
                 return responce.data
             }
         )
-    },
-    getUsers2(pageNumber, pageSize) {
-        return instance.get(`users?page=${pageNumber} &count=${pageSize}`).then(responce => {
-                return responce.data
-            }
-        )
     }
 }
 export const authApi = {
