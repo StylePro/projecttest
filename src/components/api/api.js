@@ -21,10 +21,8 @@ export const usersApi = {
     }
 }
 export const authApi = {
-    getAuth() {
-        return instance.get(`auth/me`).then(responce => {
-            return responce.data
-        })
+    me () {
+        return instance.get(`auth/me`)
     }
 }
 
