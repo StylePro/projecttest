@@ -12,6 +12,12 @@ export const usersApi = {
                 return responce.data
             }
         )
+    },
+    unfollow(userId) {
+        return instance.delete(`/follow/${userId}`)
+    },
+    follow(userId) {
+        return instance.post(`/follow/${userId}`)
     }
 }
 export const authApi = {
@@ -22,17 +28,5 @@ export const authApi = {
     }
 }
 
-export const followApi = {
-    userUnfollow(u, id) {
-        return instance.delete(`/follow/` + u.id).then(responce => {
-            return responce.data
-        })
-    },
-    userFollow(u, id) {
-        return instance.post('follow/' + u.id).then(responce => {
-            return responce.data
-        })
-    }
-}
 
 

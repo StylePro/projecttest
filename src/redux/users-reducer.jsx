@@ -11,7 +11,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 
 let initialState = {
-    users: [ ],
+    users: [],
     currentPage: 1,
     pageSize: 5,
     totalUserCount: 0,
@@ -89,6 +89,32 @@ export const getUsers = (currentPage, pageSize) => {
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))
             dispatch(setIsFetching(false))
+        })
+    }
+}
+
+export const unfollow = (userId)=> {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        usersApi.unfollow(userId)
+            .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+        })
+    }
+}
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        usersApi.follow(userId)
+            .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(followSuccess(userId));
+            }
+            dispatch(toggleFollowingProgress(false, userId))
         })
     }
 }
