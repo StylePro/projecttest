@@ -6,6 +6,7 @@ import DialogsContainer from "./Dialogs/DialogsContainer";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
 import HeaderComponent from "./Header/HeaderComponent";
+import Login from "./components/Login/Login";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path='/dialogs' element={<DialogsContainer/>}/>
                     <Route path = '/profile/:userId?' element ={<ProfileContainer />} />
                     <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/login' element={<Login/>}/>
                 </Routes>
             </div>
         </div>
