@@ -10,6 +10,7 @@ import {
 import Users from "./Users";
 import Preloader from "../components/common/preloader/Preloader";
 import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../components/hoc/withAuthRedirect";
 
 
 class UsersApiComponent extends React.Component {
@@ -55,6 +56,8 @@ let mapStateToProps = (state) => {
     }
 }
 
+let withRedirect = withAuthRedirect(UsersApiComponent)
+
 export default connect(mapStateToProps, {
     followSuccess,
     unfollowSuccess,
@@ -64,6 +67,6 @@ export default connect(mapStateToProps, {
     follow,
     unfollow
 
-})(UsersApiComponent)
+})(withRedirect)
 
 

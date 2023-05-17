@@ -1,7 +1,6 @@
 import {sendMessageActionCreator, updateMessageTextActionCreator} from "../redux/state";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import React from "react";
 import {withAuthRedirect} from "../components/hoc/withAuthRedirect";
 
 
