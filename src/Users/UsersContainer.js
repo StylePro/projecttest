@@ -11,6 +11,7 @@ import Users from "./Users";
 import Preloader from "../components/common/preloader/Preloader";
 import {Navigate} from "react-router-dom";
 import {withAuthRedirect} from "../components/hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersApiComponent extends React.Component {
@@ -56,17 +57,21 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withRedirect = withAuthRedirect(UsersApiComponent)
 
-export default connect(mapStateToProps, {
-    followSuccess,
-    unfollowSuccess,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers,
-    follow,
-    unfollow
 
-})(withRedirect)
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        followSuccess,
+        unfollowSuccess,
+        setCurrentPage,
+        toggleFollowingProgress,
+        getUsers,
+        follow,
+        unfollow
+    })
+)
+(UsersApiComponent)
+
 
 

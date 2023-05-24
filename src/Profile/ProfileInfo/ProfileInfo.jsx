@@ -1,6 +1,8 @@
 import React from 'react';
 import Preloader from "../../components/common/preloader/Preloader";
-import s from '../Profile.module.css'
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
+
+
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -8,10 +10,8 @@ const ProfileInfo = (props) => {
     }
     return (
         <div>
-            <div className={s.profile}>
-                <img src="https://w-dog.ru/wallpapers/9/17/322057789001671/zakat-nebo-solnce-luchi-oblaka-tuchi-pole-kolosya-zelenye-trava.jpg"/>
-            </div>
             <img src={props.profile.photos.large}/>
+            <ProfileStatus/>
         </div>
     )
 }
