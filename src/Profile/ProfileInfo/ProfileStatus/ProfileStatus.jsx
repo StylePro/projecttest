@@ -1,23 +1,32 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-const ProfileStatus = () => {
-    let [status, setStatus] = useState('Hello my friends');
-    let [editMode, setEditMode] = useState(false)
+const ProfileStatus = (props) => {
+    let [editMode, setEditMode] = useState(false);
+    let [title, setTitle] = useState(props.status)
+    useEffect(()=> {
+        setTitle(props.status)
+    }, [props.status])
+
     return (
         <div>
             {!editMode &&
                 <span
-                    onDoubleClick={() => {setEditMode(true)}}
-                >{status}</span>
+                    onDoubleClick={() => {
+                        setEditMode(true)
+                    }}
+                >{title}</span>
             }
             {editMode &&
                 <input
-                    value={status}
+                    value={title}
                     autoFocus={true}
-                    onBlur={() => {setEditMode(false)}}
-                    onChange={(event)=> {setStatus(event.currentTarget.value)}}
-                />
-            }
+                    onBlur={() => {
+                        setEditMode(false)
+                    }}
+                    onChange={(event) => {
+                        setTitle(event.currentTarget.value)
+                    }}
+                />}
         </div>
     )
 }

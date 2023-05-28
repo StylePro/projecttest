@@ -1,8 +1,7 @@
-import {getProfile} from "../components/api/api";
-
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
+const GET_STATUS = 'GET_STATUS';
 
 let initialStore = {
     posts: [
@@ -13,7 +12,8 @@ let initialStore = {
         {id: 5, message: 'Ogogo', likesCount: 43},
     ],
     newPostText: '123',
-    profile: null
+    profile: null,
+    status: '---'
 }
 const profileReducer = (state = initialStore, action) => {
 
@@ -33,6 +33,10 @@ const profileReducer = (state = initialStore, action) => {
             return {
                 ...state, profile: action.profile
             }
+        case GET_STATUS:
+            return {
+                ...state, status: action.status
+            }
         default:
             return state;
     }
@@ -41,7 +45,7 @@ const profileReducer = (state = initialStore, action) => {
 export const addPostActionCreator = () => ({type: 'ADD-POST'});
 export const updateNewPostTextActionCreator = (text) => ({type: 'UPDATE-POST-TEXT', text: text});
 export const setUserProfile = (profile) => ({type: SET_PROFILE_USER, profile});
-
+export const getStatus = (status) => ({type: GET_STATUS, status});
 
 
 export default profileReducer;
