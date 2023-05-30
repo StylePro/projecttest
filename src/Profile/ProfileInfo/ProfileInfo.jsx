@@ -10,7 +10,11 @@ const ProfileInfo = (props) => {
     }
     return (
         <div>
-            <img src={props.profile.photos.large}/>
+            {props.profile.photos.large
+            ? <img src={props.profile.photos.large}/>
+            : "NO PHOTO"}
+
+
             <ProfileStatus status={props.status}/>
         </div>
     )
