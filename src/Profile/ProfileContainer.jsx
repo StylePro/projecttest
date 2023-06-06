@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import Profile from "./Profile";
 import {Navigate, useParams} from "react-router-dom";
 import {getStatus, setUserProfile} from "../redux/profile-reducer";
@@ -13,7 +13,6 @@ function ProfileContainer(props) {
     if (!userId) {
         userId = 2;
     }
-
     useEffect(() => {
         getProfile.userProfile(userId).then(response => {
             props.setUserProfile(response.data);
@@ -23,7 +22,8 @@ function ProfileContainer(props) {
         })
     }, [userId]);
 
-    if (!props.isAuth) {
+    const isAuth = useSelector(state => state.auth.isAuth)
+    if (!isAuth) {
         return <Navigate to='/login'/>
     }
     return (

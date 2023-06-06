@@ -13,7 +13,7 @@ const Login = () => {
         },
         validationSchema: basicSchema,
         onSubmit: values => {
-            console.log(values)
+            alert(JSON.stringify(values))
         }
     })
     return (

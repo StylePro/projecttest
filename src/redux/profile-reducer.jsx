@@ -1,4 +1,3 @@
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
 const GET_STATUS = 'GET_STATUS';
@@ -11,9 +10,8 @@ let initialStore = {
         {id: 4, message: 'All good', likesCount: 45},
         {id: 5, message: 'Ogogo', likesCount: 43},
     ],
-    newPostText: '123',
     profile: null,
-    status: '---'
+    status: 'none'
 }
 const profileReducer = (state = initialStore, action) => {
 
@@ -21,13 +19,8 @@ const profileReducer = (state = initialStore, action) => {
         case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, {id: Date.now(), message: state.newPostText, likesCount: 0}],
+                posts: [...state.posts, {id: Date.now(), message: action.sendPost.textPost, likesCount: 0}],
                 newPostText: ''
-            }
-        case UPDATE_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.text
             }
         case SET_PROFILE_USER:
             return {
@@ -41,9 +34,6 @@ const profileReducer = (state = initialStore, action) => {
             return state;
     }
 }
-
-export const addPostActionCreator = () => ({type: 'ADD-POST'});
-export const updateNewPostTextActionCreator = (text) => ({type: 'UPDATE-POST-TEXT', text: text});
 export const setUserProfile = (profile) => ({type: SET_PROFILE_USER, profile});
 export const getStatus = (status) => ({type: GET_STATUS, status});
 

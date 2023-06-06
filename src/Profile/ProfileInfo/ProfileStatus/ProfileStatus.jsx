@@ -1,11 +1,10 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import {useSelector} from "react-redux";
 
-const ProfileStatus = (props) => {
+const ProfileStatus = () => {
+    const status = useSelector(state=> state.profilePage.status)
     let [editMode, setEditMode] = useState(false);
-    let [title, setTitle] = useState(props.status)
-    useEffect(()=> {
-        setTitle(props.status)
-    }, [props.status])
+    let [title, setTitle] = useState(status)
 
     return (
         <div>
