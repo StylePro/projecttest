@@ -21,11 +21,11 @@ function ProfileContainer(props) {
             props.getStatus(responce.data)
         });
     }, [userId]);
-    useEffect(() => {
+  /*  useEffect(() => {
         getProfile.updateStatus('Hello2').then(responce => {
             props.setStatus(responce.data)
         })
-    });
+    });*/
 
 
     const isAuth = useSelector(state => state.auth.isAuth)

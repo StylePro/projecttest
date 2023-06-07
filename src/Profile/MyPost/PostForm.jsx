@@ -17,6 +17,7 @@ const PostForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <input
+                placeholder='input post'
                 type="text"
                 name="textPost"
                 onChange={handleChange}
