@@ -1,6 +1,9 @@
+import {getProfile} from "../components/api/api";
+
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
 const GET_STATUS = 'GET_STATUS';
+const SET_STATUS = 'SET_STATUS';
 
 let initialStore = {
     posts: [
@@ -20,7 +23,6 @@ const profileReducer = (state = initialStore, action) => {
             return {
                 ...state,
                 posts: [...state.posts, {id: Date.now(), message: action.sendPost.textPost, likesCount: 0}],
-                newPostText: ''
             }
         case SET_PROFILE_USER:
             return {
@@ -30,12 +32,27 @@ const profileReducer = (state = initialStore, action) => {
             return {
                 ...state, status: action.status
             }
+        case SET_STATUS:
+            return {
+                ...state, status: action.status
+            }
         default:
             return state;
     }
 }
 export const setUserProfile = (profile) => ({type: SET_PROFILE_USER, profile});
 export const getStatus = (status) => ({type: GET_STATUS, status});
+export const setStatus = (status) => ({type: SET_STATUS, status});
+
+
+export const updateStatus = (status)=> (dispatch) => {
+    getProfile.updateStatus(status)
+        .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+        })
+}
 
 
 export default profileReducer;

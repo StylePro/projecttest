@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {connect, useSelector} from "react-redux";
 import Profile from "./Profile";
 import {Navigate, useParams} from "react-router-dom";
-import {getStatus, setUserProfile} from "../redux/profile-reducer";
+import {getStatus, setStatus, setUserProfile} from "../redux/profile-reducer";
 import {getProfile} from "../components/api/api";
 import {withAuthRedirect} from "../components/hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -11,7 +11,7 @@ import {compose} from "redux";
 function ProfileContainer(props) {
     let {userId} = useParams();
     if (!userId) {
-        userId = 2;
+        userId = 28860;
     }
     useEffect(() => {
         getProfile.userProfile(userId).then(response => {
@@ -19,8 +19,14 @@ function ProfileContainer(props) {
         });
         getProfile.getUserStatus(userId).then(responce => {
             props.getStatus(responce.data)
-        })
+        });
     }, [userId]);
+    useEffect(() => {
+        getProfile.updateStatus('Hello2').then(responce => {
+            props.setStatus(responce.data)
+        })
+    });
+
 
     const isAuth = useSelector(state => state.auth.isAuth)
     if (!isAuth) {
@@ -39,7 +45,7 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {setUserProfile, getStatus}),
+    connect(mapStateToProps, {setUserProfile, getStatus, setStatus}),
     withAuthRedirect
 )
 (ProfileContainer)
