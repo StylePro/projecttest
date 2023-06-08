@@ -21,12 +21,6 @@ function ProfileContainer(props) {
             props.getStatus(responce.data)
         });
     }, [userId]);
-  /*  useEffect(() => {
-        getProfile.updateStatus('Hello2').then(responce => {
-            props.setStatus(responce.data)
-        })
-    });*/
-
 
     const isAuth = useSelector(state => state.auth.isAuth)
     if (!isAuth) {
