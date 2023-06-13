@@ -26,6 +26,7 @@ export const AddMessageForm = (props)=> {
             />
             <br/>
             <button
+                disabled={!values.newMessage}
                 type="submit">Send</button>
         </form>
     )

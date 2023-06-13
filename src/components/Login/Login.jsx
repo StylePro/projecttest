@@ -1,33 +1,45 @@
 import React from "react";
 import {useFormik} from "formik";
 import {basicSchema} from "./BasicForm";
-import s from '../Login/Login.module.css'
+import './Login.css'
+import {useDispatch, useSelector} from "react-redux";
+import {LoginIn} from "../../redux/auth-reducer";
+import {Navigate} from "react-router-dom";
 
 
 const Login = () => {
-    const {values, errors, handleBlur, handleChange, handleSubmit, dirty, touched} = useFormik({
+    const dispatch = useDispatch()
+    const isAuth = useSelector(state => state.auth.isAuth)
+    const {values, errors, handleBlur, handleChange, handleSubmit, touched} = useFormik({
         initialValues: {
             email: '',
             password: '',
-            confirmPassword: '',
+            rememberMe: false,
         },
         validationSchema: basicSchema,
-        onSubmit: values => {
+        onSubmit: (values) => {
+            dispatch(LoginIn(values.email, values.password, values.rememberMe))
             alert(JSON.stringify(values))
         }
     })
+
+    if(isAuth) {
+        return <Navigate to='/profile'/>
+    }
+
     return (
-        <form onSubmit={handleSubmit} className={s.login}>
+        <form onSubmit={handleSubmit}>
             <h1><label htmlFor="Login">Login</label></h1>
             <div>
                 <input
                     id="email"
                     name="email"
-                    type="text"
+                    type="email"
                     onChange={handleChange}
                     value={values.email}
                     onBlur={handleBlur}
-                /> {errors.email && touched.email && <p className={s.errors}>{errors.email}</p>}
+                    className={errors.email && touched.email ? 'input-error' : ''}
+                /> {errors.email && touched.email && <p className='error'>{errors.email}</p>}
             </div>
            <div>
                <label htmlFor="password">Password</label> <br/>
@@ -38,26 +50,22 @@ const Login = () => {
                    onChange={handleChange}
                    value={values.password}
                    onBlur={handleBlur}
-               />
-               {errors.password && touched.password && <p className={s.errors}>{errors.password}</p>}
+                   className={errors.password && touched.password ? 'input-error' : ''}
+               /> {errors.password && touched.password && <p className='error'>{errors.password}</p>}
            </div>
 
-            <label htmlFor="confirmPassword">ConfirmPassword</label> <br/>
+            <label htmlFor="rememberMe">Remember me</label> <br/>
             <div>
-
                 <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="confirmPassword"
+                    id="rememberMe"
+                    name="rememberMe"
+                    type="checkbox"
                     onChange={handleChange}
-                    value={values.confirmPassword}
-                    onBlur={handleBlur}
                 />
-                {errors.confirmPassword && touched.confirmPassword && <p className={s.errors}>{errors.confirmPassword}</p>}
             </div>
             <div>
                 <button
-                    disabled={!dirty && !errors}
+                    disabled={errors.email || errors.password}
                     type="submit"
                 >Send
                 </button>

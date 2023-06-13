@@ -3,6 +3,8 @@ import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 
 
+
+
 const PostForm = () => {
     const dispatch = useDispatch()
     const addPost =(sendPost)=> {
@@ -12,7 +14,7 @@ const PostForm = () => {
         initialValues: {
             textPost: ''
         },
-        onSubmit: value=> addPost(value)
+        onSubmit: values=> addPost(values)
     })
     return (
         <form onSubmit={handleSubmit}>
@@ -23,7 +25,9 @@ const PostForm = () => {
                 onChange={handleChange}
                 value={values.textPost}
             /> <br/>
-            <button type='submit'>Send post</button>
+            <button
+                disabled={!values.textPost}
+                type='submit'>Send post</button>
         </form>
     )
 }

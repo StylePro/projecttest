@@ -42,4 +42,5 @@ export const setUserProfile = (profile) => ({type: SET_PROFILE_USER, profile});
 export const getStatus = (status) => ({type: GET_STATUS, status});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 
+
 export default profileReducer;

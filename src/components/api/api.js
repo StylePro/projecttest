@@ -23,7 +23,13 @@ export const usersApi = {
 export const authApi = {
     me () {
         return instance.get(`auth/me`)
-    }
+    },
+    login (email, password, rememberMe = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe})
+    },
+    logOut () {
+        return instance.delete(`auth/login`)
+    },
 }
 
 export const getProfile = {
